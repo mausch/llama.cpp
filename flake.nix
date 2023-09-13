@@ -69,7 +69,7 @@
         };
         packages.cuda = pkgs.stdenv.mkDerivation {
           inherit name src meta postPatch nativeBuildInputs postInstall;
-          buildInputs = with pkgs; buildInputs ++ [ cudaPackages.cudatoolkit ];
+          buildInputs = with pkgs; buildInputs ++ [ cudaPackages_12_0.cudatoolkit ];
           cmakeFlags = cmakeFlags ++ [
             "-DLLAMA_CUBLAS=ON"
           ];
