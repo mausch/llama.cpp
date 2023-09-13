@@ -67,6 +67,13 @@
             "-DLLAMA_CLBLAST=ON"
           ];
         };
+        packages.cuda = pkgs.stdenv.mkDerivation {
+          inherit name src meta postPatch nativeBuildInputs postInstall;
+          buildInputs = with pkgs; buildInputs ++ [ cudaPackages.cudatoolkit ];
+          cmakeFlags = cmakeFlags ++ [
+            "-DLLAMA_CUBLAS=ON"
+          ];
+        };
         packages.rocm = pkgs.stdenv.mkDerivation {
           inherit name src meta postPatch nativeBuildInputs postInstall;
           buildInputs = with pkgs; buildInputs ++ [ hip hipblas rocblas ];
